@@ -4,9 +4,7 @@
 items = [1, 2, 3, 5]
 
 def bin_search(start, items):
-#  print 'items: ' + str(items)
   count = len(items)
-#  print 'length of items: ' + str(count)
   if (count == 1):
     if (start + 1 == items[0]): # if number is already in items
       print 'found missing number: ' + str(start)
@@ -15,16 +13,11 @@ def bin_search(start, items):
       print 'found missing number: ' + str(start + 1)
       return
   half = int(count / 2)
-#  print 'middle elem: ' + str(half)
   expected_num = start + half
   got_num = items[half]
-#  print 'expected in middle: ' + str(expected_num)
-#  print 'got in middle: ' + str(got_num)
   if got_num == expected_num:
-#    print 'got ' + str(items[half::])
     bin_search(items[half], items[half::])
   elif got_num != expected_num:
-#    print 'not got ' + str(items[0:half])
     bin_search(start, items[0:half])
 
 
