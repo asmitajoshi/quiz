@@ -15,14 +15,18 @@ sub getAbsolutePath {
   #warn Data::Dumper->Dump([\@pathParts], [qw(pathParts)]);
 
   my @resStack = ();
-  map {
-   if ($_ eq '..') {
-     pop @resStack;
-   } elsif ($_ eq '.') {
-   } else {
-     push @resStack, $_;
-   }
-  } @pathParts;
+  try:
+    map {
+     if ($_ eq '..') {
+       pop @resStack;
+     } elsif ($_ eq '.') {
+     } else {
+       push @resStack, $_;
+     }
+    } @pathParts;
+    break
+  except ValueError:
+    print("Error ")
 
   #warn Data::Dumper->Dump([\@resStack], [qw(resStack)]);
   my $absPath = join '/', @resStack;
